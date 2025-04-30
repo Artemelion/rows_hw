@@ -1,60 +1,42 @@
-#include <iostream>
-#include <cstring>
 #include "Func_Str_Txt.h"
 using namespace std;
 
 int main() {
-    // --- 了问 1 ---
-    cout << "BLOCK 1 - String Functions" << endl;
-    const char* original = "World";
-    char buffer[100] = "Hello ";
+    // --- BLOCK HW 1 ---
+    cout << "BLOCK 1 String Functions" << endl;
+    char* buffer = new char[100];
+    strcpy(buffer, "Hello");
 
-    // mystrlen
-    cout << "Length of 'World': " << mystrlen(original) << endl;
+    cout << "Length: " << myStrLen(buffer) << endl;
 
-    // mystrcpy
-    mystrcpy(buffer, original);
-    cout << "Copied string: " << buffer << endl;
+    char cmp1[] = "Hello", cmp2[] = "World";
+    cout << "Compare result: " << myStrCmp(cmp1, cmp2) << endl;
 
-    // mystrcat
-    mystrcpy(buffer, "Hello ");
-    mystrcat(buffer, original);
-    cout << "Concatenated string: " << buffer << endl;
+    char dest[100];
+    myStrCpy(dest, cmp1);
+    cout << "Copied: " << dest << endl;
 
-    // mystrchr
-    const char* foundChar = mystrchr(buffer, 'r');
-    if (foundChar) cout << "Found char 'r': " << foundChar << endl;
-    else cout << "Char 'r' not found" << endl;
+    char* dynamic = new char[100];
+    strcpy(dynamic, "Hello ");
+    myStrCat(dynamic, "World");
+    cout << "Concatenated: " << dynamic << endl;
+    delete[] dynamic;
 
-    // mystrstr
-    const char* foundStr = mystrstr(buffer, "or");
-    if (foundStr) cout << "Found substring 'or': " << foundStr << endl;
-    else cout << "Substring 'or' not found" << endl;
+    char* foundStr = myStrStr(buffer, "lo");
+    if (foundStr)
+        cout << "Found: " << foundStr << endl;
+    else
+        cout << "Substring not found" << endl;
 
-    // --- 了问 2 ---
-    cout << "\nBLOCK 2 - Text Processing" << endl;
-    char text[] = "Hello world. How are you doing? This is an example, really!";
+    delete[] buffer;
 
-    // countOccurrences
-    cout << "Occurrences of 'is': " << countOccurrences(text, "is") << endl;
-
-    // countSentences
-    cout << "Number of sentences: " << countSentences(text) << endl;
-
-    // countDotsAndCommas
-    cout << "Number of '.' and ',': " << countDotsAndCommas(text) << endl;
-
-    // reverseText
-    char fullCopy[200];
-    strcpy(fullCopy, text);
-    reverseText(fullCopy);
-    cout << "Reversed full text: " << fullCopy << endl;
-
-    // reverseEachSentence
-    char sentenceCopy[200];
-    strcpy(sentenceCopy, text);
-    reverseEachSentence(sentenceCopy);
-    cout << "Each sentence reversed: " << sentenceCopy << endl;
+    // --- BLOCK HW 2 ---
+    cout << "\nBLOCK 2 Text Processing" << endl;
+    const char* text = "Hello, world! How are you doing?";
+    cout << text << endl;
+    cout << "Occurrences of 'o': " << countOccurrences(text, 'o') << endl;
+    cout << "Dots & commas: " << countDotsAndCommas(text) << endl;
+    cout << "Sentences: " << countSentences(text) << endl;
 
     return 0;
 }
